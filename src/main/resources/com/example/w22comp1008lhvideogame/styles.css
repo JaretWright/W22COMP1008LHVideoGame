@@ -1,0 +1,11 @@
+.root{
+    -fx-background-image: url('images/space.png');
+    -fx-background-position: center center;
+}
+
+.button{
+    -fx-font-size: 30px;
+    -fx-background-radius: 40px;
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}

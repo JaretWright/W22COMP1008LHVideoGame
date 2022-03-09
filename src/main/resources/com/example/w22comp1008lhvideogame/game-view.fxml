@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<AnchorPane fx:id="anchorPane" prefHeight="800.0" prefWidth="1000.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.w22comp1008lhvideogame.GameViewController">
+   <children>
+      <StackPane layoutX="489.0" layoutY="372.0" prefHeight="801.6" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="startButton" mnemonicParsing="false" text="Start Game" />
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
