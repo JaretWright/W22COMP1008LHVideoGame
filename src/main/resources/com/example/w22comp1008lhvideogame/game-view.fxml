@@ -9,7 +9,7 @@
    <children>
       <StackPane layoutX="489.0" layoutY="372.0" prefHeight="801.6" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="startButton" mnemonicParsing="false" text="Start Game" />
+            <Button fx:id="startButton" mnemonicParsing="false" onAction="#startGame" text="Start Game" />
          </children>
       </StackPane>
    </children>

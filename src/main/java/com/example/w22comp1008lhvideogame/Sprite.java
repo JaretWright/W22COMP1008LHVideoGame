@@ -1,5 +1,6 @@
 package com.example.w22comp1008lhvideogame;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Sprite {
@@ -65,7 +66,7 @@ public class Sprite {
     }
 
     public void setImageHeight(int imageHeight) {
-        if (imageHeight <= 10 && imageHeight <= GameConfig.getMaxSpriteHeight())
+        if (imageHeight >= 10 && imageHeight <= GameConfig.getMaxSpriteHeight())
             this.imageHeight = imageHeight;
         else
             throw new IllegalArgumentException("imageHeight must in the range of 10-"+GameConfig.getMaxSpriteHeight());
@@ -92,5 +93,24 @@ public class Sprite {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    /**
+     * posX is the left most part of the image
+     * posY is the top of the image
+     * imageWidth and imageHeight reflect the size in pixels
+     * @param gc
+     */
+    public void draw(GraphicsContext gc)
+    {
+        gc.drawImage(image,posX,posY,imageWidth,imageHeight);
+    }
+
+    public void moveRight()
+    {
+        posX = posX+speed;
+
+        if (posX >= GameConfig.getGameWidth()-imageWidth)
+            posX = GameConfig.getGameWidth()-imageWidth;
     }
 }
