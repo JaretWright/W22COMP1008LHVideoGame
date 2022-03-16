@@ -1,18 +1,36 @@
 package com.example.w22comp1008lhvideogame;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
 public class Ship extends Sprite{
-    private ArrayList<Missile> missiles;
+    private ArrayList<Missile> activeMissiles;
     private int missilesRemaining;
+    private final int REFRESH_RATE = 20;
+    private int missilePause;
 
     public Ship(int posX, int posY, int imageWidth, int imageHeight, int speed) {
         super(posX, posY, imageWidth, imageHeight, speed);
         image =  new Image(Main.class.getResource("images/ship.png").toExternalForm());
-        missiles = new ArrayList<>();
+        activeMissiles = new ArrayList<>();
         missilesRemaining = GameConfig.getInitialMissileCount();
+        missilePause = REFRESH_RATE;
+    }
+
+    /**
+     * This method will shoot a missile from the current position of the ship
+     * Once a ship runs out of activeMissiles, it will need to wait for a reload
+     */
+    public void shootMissile()
+    {
+        if (missilePause <0)
+        {
+            missilesRemaining--;
+            activeMissiles.add(new Missile(posX+imageWidth,posY+(imageHeight/2-GameConfig.getMissileHeight()/2)));
+            missilePause = REFRESH_RATE;
+        }
     }
 
     /**
@@ -50,5 +68,17 @@ public class Ship extends Sprite{
             posX = 0;
     }
 
+    public void draw(GraphicsContext gc)
+    {
+        missilePause--;
 
+        //draw the ship
+        gc.drawImage(image, posX, posY, imageWidth, imageHeight);
+
+        //loop over all the active missiles and draw them on the canvas
+        for (Missile missile : activeMissiles)
+        {
+            missile.draw(gc);
+        }
+    }
 }

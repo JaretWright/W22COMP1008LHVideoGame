@@ -11,12 +11,9 @@ public class Missile extends Sprite {
      * The line "super(image, posX, posY,...);" is calling the super class constructor.
      * @param posX
      * @param posY
-     * @param imageWidth
-     * @param imageHeight
-     * @param speed
      */
-    public Missile(int posX, int posY, int imageWidth, int imageHeight, int speed) {
-        super(posX, posY, imageWidth, imageHeight, speed);
+    public Missile(int posX, int posY) {
+        super(posX, posY, GameConfig.getMissileWidth(), GameConfig.getMissileHeight(), GameConfig.getMissileSpeed());
         image = new Image(Main.class.getResource("images/missile.png").toExternalForm());
     }
 

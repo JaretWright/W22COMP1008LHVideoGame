@@ -44,7 +44,6 @@ public class GameViewController implements Initializable {
         //The -> is called a "lambda expression", it is a short form of calling a
         //method and passing in a variable
         anchorPane.getScene().setOnKeyPressed(keyPressed -> {
-            System.out.println("keyPressed = "+keyPressed.getCode());
             System.out.println("Keys currently pressed -> "+activeKeys);
             activeKeys.add(keyPressed.getCode());
         });
@@ -58,9 +57,6 @@ public class GameViewController implements Initializable {
 
         //load an image for our ship
         Ship ship = new Ship(100,100,100,60,5);
-
-        //create a test missile
-        Missile missile = new Missile(100,100,70,40,10);
 
         //Add a timer to draw and update the Sprites
         AnimationTimer timer = new AnimationTimer() {
@@ -84,8 +80,8 @@ public class GameViewController implements Initializable {
             ship.moveUp();
         if (activeKeys.contains(KeyCode.DOWN))
             ship.moveDown();
-//        if (activeKeys.contains(KeyCode.SPACE))
-//            ship.shootMissile();
+        if (activeKeys.contains(KeyCode.SPACE))
+            ship.shootMissile();
     }
 
     @Override

@@ -6,6 +6,33 @@ public class GameConfig {
     private static int maxSpriteHeight = 100;
     private static int maxSpriteWidth = 150;
     private static int initialMissileCount = 30;
+    private static int missileWidth = 50;
+    private static int missileHeight = 30;
+    private static int missileSpeed = 9;
+
+    public static int getMissileWidth() {
+        return missileWidth;
+    }
+
+    public static void setMissileWidth(int missileWidth) {
+        GameConfig.missileWidth = missileWidth;
+    }
+
+    public static int getMissileHeight() {
+        return missileHeight;
+    }
+
+    public static void setMissileHeight(int missileHeight) {
+        GameConfig.missileHeight = missileHeight;
+    }
+
+    public static int getMissileSpeed() {
+        return missileSpeed;
+    }
+
+    public static void setMissileSpeed(int missileSpeed) {
+        GameConfig.missileSpeed = missileSpeed;
+    }
 
     public static int getInitialMissileCount() {
         return initialMissileCount;
