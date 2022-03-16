@@ -3,13 +3,12 @@ package com.example.w22comp1008lhvideogame;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Sprite {
-    private Image image;
+public abstract class Sprite {
+    protected Image image;
     private int posX, posY, imageWidth, imageHeight, speed;
     private boolean alive;
 
-    public Sprite(Image image, int posX, int posY, int imageWidth, int imageHeight, int speed) {
-        setImage(image);
+    public Sprite(int posX, int posY, int imageWidth, int imageHeight, int speed) {
         setPosX(posX);
         setPosY(posY);
         setImageWidth(imageWidth);

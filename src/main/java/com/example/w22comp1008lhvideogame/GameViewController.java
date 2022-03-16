@@ -28,16 +28,21 @@ public class GameViewController {
         Image background = new Image(getClass().getResource("images/space.png").toExternalForm());
 
         //load an image for our ship
-        Image shipImage = new Image(getClass().getResource("images/ship.png").toExternalForm());
-        Sprite ship = new Sprite(shipImage,100,100,100,60,5);
+//        Image shipImage = new Image(getClass().getResource("images/ship.png").toExternalForm());
+//        Sprite ship = new Sprite(shipImage,100,100,100,60,5);
+
+        //create a test missile
+        Missile missile = new Missile(100,100,70,40,10);
 
         //Add a timer to draw and update the Sprites
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
                 gc.drawImage(background, 0, 0, GameConfig.getGameWidth(), GameConfig.getGameHeight());
-                ship.draw(gc);
-                ship.moveRight();
+                missile.moveRight();
+                missile.draw(gc);
+//                ship.draw(gc);
+//                ship.moveRight();
             }
         };
         timer.start();
