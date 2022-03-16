@@ -9,6 +9,33 @@ public class GameConfig {
     private static int missileWidth = 50;
     private static int missileHeight = 30;
     private static int missileSpeed = 9;
+    private static int alienWidth = 70;
+    private static int alienHeight = 70;
+    private static int alienSpeed = 2;
+
+    public static int getAlienWidth() {
+        return alienWidth;
+    }
+
+    public static void setAlienWidth(int alienWidth) {
+        GameConfig.alienWidth = alienWidth;
+    }
+
+    public static int getAlienHeight() {
+        return alienHeight;
+    }
+
+    public static void setAlienHeight(int alienHeight) {
+        GameConfig.alienHeight = alienHeight;
+    }
+
+    public static int getAlienSpeed() {
+        return alienSpeed;
+    }
+
+    public static void setAlienSpeed(int alienSpeed) {
+        GameConfig.alienSpeed = alienSpeed;
+    }
 
     public static int getMissileWidth() {
         return missileWidth;
