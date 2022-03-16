@@ -5,6 +5,18 @@ public class GameConfig {
     private static int gameWidth = 1000;
     private static int maxSpriteHeight = 100;
     private static int maxSpriteWidth = 150;
+    private static int initialMissileCount = 30;
+
+    public static int getInitialMissileCount() {
+        return initialMissileCount;
+    }
+
+    public static void setInitialMissileCount(int initialMissileCount) {
+        if (initialMissileCount>0 && initialMissileCount<=50)
+            GameConfig.initialMissileCount = initialMissileCount;
+        else
+            throw new IllegalArgumentException("initial missile count must be 1-50");
+    }
 
     public static int getGameHeight() {
         return gameHeight;
