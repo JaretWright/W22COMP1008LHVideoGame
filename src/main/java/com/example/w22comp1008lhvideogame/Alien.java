@@ -28,7 +28,10 @@ public class Alien extends Sprite{
 
     public void draw(GraphicsContext gc)
     {
-        super.draw(gc);
-        moveLeft();
+        if (isAlive())
+        {
+            super.draw(gc);
+            moveLeft();
+        }
     }
 }

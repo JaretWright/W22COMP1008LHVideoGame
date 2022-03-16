@@ -12,6 +12,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -58,6 +60,16 @@ public class GameViewController implements Initializable {
         //load an image for our ship
         Ship ship = new Ship(100,100,100,60,5);
 
+        ArrayList<Alien> aliens = new ArrayList<>();
+        SecureRandom rng = new SecureRandom();
+
+        //Add Alien's to the scene
+        for (int i = 1; i<=5 ; i++)
+        {
+            aliens.add(new Alien(rng.nextInt(600,900),
+                            rng.nextInt(30,GameConfig.getGameHeight()-GameConfig.getAlienHeight())));
+        }
+
         //Add a timer to draw and update the Sprites
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -65,6 +77,21 @@ public class GameViewController implements Initializable {
                 gc.drawImage(background, 0, 0, GameConfig.getGameWidth(), GameConfig.getGameHeight());
                 updateShipLocation(ship);
                 ship.draw(gc);
+
+                for (Alien alien : aliens)
+                {
+                    alien.draw(gc);
+
+                    for (Missile missile : ship.getActiveMissiles())
+                    {
+                        if (missile.collidesWith(alien))
+                        {
+                            //show an explosion
+                            missile.setAlive(false);
+                            alien.setAlive(false);
+                        }
+                    }
+                }
             }
         };
         timer.start();
@@ -89,5 +116,7 @@ public class GameViewController implements Initializable {
         //initialize the set to hold the keycode pressed by the user
         activeKeys = new HashSet<>();
     }
+
+
 }
 

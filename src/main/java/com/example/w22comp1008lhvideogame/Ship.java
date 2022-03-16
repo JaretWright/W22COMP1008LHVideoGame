@@ -19,6 +19,10 @@ public class Ship extends Sprite{
         missilePause = REFRESH_RATE;
     }
 
+    public ArrayList<Missile> getActiveMissiles() {
+        return activeMissiles;
+    }
+
     /**
      * This method will shoot a missile from the current position of the ship
      * Once a ship runs out of activeMissiles, it will need to wait for a reload
