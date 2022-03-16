@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 
 public abstract class Sprite {
     protected Image image;
-    private int posX, posY, imageWidth, imageHeight, speed;
+    protected int posX, posY, imageWidth, imageHeight, speed;
     private boolean alive;
 
     public Sprite(int posX, int posY, int imageWidth, int imageHeight, int speed) {
@@ -30,7 +30,7 @@ public abstract class Sprite {
     }
 
     public void setPosX(int posX) {
-        int furthestRight = GameConfig.getGameWidth()-imageWidth;
+        int furthestRight = GameConfig.getGameWidth()+300;
         if (posX>=0 && posX <= furthestRight)
             this.posX = posX;
         else

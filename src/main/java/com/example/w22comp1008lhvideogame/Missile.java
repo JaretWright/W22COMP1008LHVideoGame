@@ -1,5 +1,6 @@
 package com.example.w22comp1008lhvideogame;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Missile extends Sprite {
@@ -17,5 +18,30 @@ public class Missile extends Sprite {
     public Missile(int posX, int posY, int imageWidth, int imageHeight, int speed) {
         super(posX, posY, imageWidth, imageHeight, speed);
         image = new Image(Main.class.getResource("images/missile.png").toExternalForm());
+    }
+
+    /**
+     * Missiles can only move to the right, so if they receive a command to move up, down or left, ignore the
+     * request
+     */
+    public void moveUp() { }
+    public void moveDown() { }
+    public void moveLeft() { }
+
+    @Override
+    public void moveRight() {
+        if (getPosX()>GameConfig.getGameWidth())
+            setAlive(false);
+        else
+            setPosX( getPosX()+getSpeed());
+    }
+
+    public void draw(GraphicsContext gc)
+    {
+        if (isAlive())
+        {
+            gc.drawImage(image,posX,posY,imageWidth,imageHeight);
+            moveRight();
+        }
     }
 }
