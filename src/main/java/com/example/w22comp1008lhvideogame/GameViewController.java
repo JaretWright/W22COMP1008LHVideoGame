@@ -37,11 +37,6 @@ public class GameViewController implements Initializable {
     @FXML
     private void startGame(ActionEvent event)
     {
-        Canvas canvas = new Canvas(GameConfig.getGameWidth(), GameConfig.getGameHeight());
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        anchorPane.getChildren().add(canvas);
-
-
         //This creates a "listener" that will add the key pressed to the set
         //The -> is called a "lambda expression", it is a short form of calling a
         //method and passing in a variable
@@ -53,6 +48,11 @@ public class GameViewController implements Initializable {
         anchorPane.getScene().setOnKeyReleased(keyReleased -> {
             activeKeys.remove(keyReleased.getCode());
         });
+
+        startButton.setVisible(false);
+
+        Canvas canvas = new Canvas(GameConfig.getGameWidth(), GameConfig.getGameHeight());
+        GraphicsContext gc = canvas.getGraphicsContext2D();
 
         //load the background
         Image background = new Image(getClass().getResource("images/space.png").toExternalForm());
@@ -94,6 +94,7 @@ public class GameViewController implements Initializable {
                 }
             }
         };
+        anchorPane.getChildren().add(canvas);
         timer.start();
     }
 
