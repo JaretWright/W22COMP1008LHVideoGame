@@ -41,7 +41,6 @@ public class GameViewController implements Initializable {
         //The -> is called a "lambda expression", it is a short form of calling a
         //method and passing in a variable
         anchorPane.getScene().setOnKeyPressed(keyPressed -> {
-            System.out.println("Keys currently pressed -> "+activeKeys);
             activeKeys.add(keyPressed.getCode());
         });
 
@@ -64,7 +63,7 @@ public class GameViewController implements Initializable {
         SecureRandom rng = new SecureRandom();
 
         //Add Alien's to the scene
-        for (int i = 1; i<=5 ; i++)
+        for (int i = 1; i<=50 ; i++)
         {
             aliens.add(new Alien(rng.nextInt(600,900),
                             rng.nextInt(30,GameConfig.getGameHeight()-GameConfig.getAlienHeight())));
@@ -76,7 +75,13 @@ public class GameViewController implements Initializable {
             public void handle(long l) {
                 gc.drawImage(background, 0, 0, GameConfig.getGameWidth(), GameConfig.getGameHeight());
                 updateShipLocation(ship);
+
                 ship.draw(gc);
+
+                //This is a lamdba expression
+                //it loops over the collection of aliens and calls the method isAlive() for each Alien
+                //if the !alien.isAlive() evaluates to true, it removes the Alien from the collection
+                aliens.removeIf(alien -> !alien.isAlive());
 
                 for (Alien alien : aliens)
                 {

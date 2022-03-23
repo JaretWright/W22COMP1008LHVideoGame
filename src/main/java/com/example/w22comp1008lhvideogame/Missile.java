@@ -37,7 +37,7 @@ public class Missile extends Sprite {
     {
         if (isAlive())
         {
-            gc.drawImage(image,posX,posY,imageWidth,imageHeight);
+            super.draw(gc);
             moveRight();
         }
     }
