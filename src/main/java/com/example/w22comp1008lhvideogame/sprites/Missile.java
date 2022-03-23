@@ -1,5 +1,8 @@
-package com.example.w22comp1008lhvideogame;
+package com.example.w22comp1008lhvideogame.sprites;
 
+import com.example.w22comp1008lhvideogame.GameConfig;
+import com.example.w22comp1008lhvideogame.Main;
+import com.example.w22comp1008lhvideogame.sprites.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 

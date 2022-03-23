@@ -1,5 +1,8 @@
 package com.example.w22comp1008lhvideogame;
 
+import com.example.w22comp1008lhvideogame.sprites.Alien;
+import com.example.w22comp1008lhvideogame.sprites.Missile;
+import com.example.w22comp1008lhvideogame.sprites.Ship;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +22,6 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class GameViewController implements Initializable {
 

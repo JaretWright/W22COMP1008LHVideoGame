@@ -1,11 +1,13 @@
-package com.example.w22comp1008lhvideogame;
+package com.example.w22comp1008lhvideogame.sprites;
 
+import com.example.w22comp1008lhvideogame.GameConfig;
+import com.example.w22comp1008lhvideogame.Main;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
-public class Ship extends Sprite{
+public class Ship extends Sprite {
     private ArrayList<Missile> activeMissiles;
     private int missilesRemaining;
     private final int REFRESH_RATE = 20;
