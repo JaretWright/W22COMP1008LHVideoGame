@@ -45,7 +45,8 @@ public class Ship extends Sprite {
      */
     public void moveDown()
     {
-        int furthestDown = GameConfig.getGameHeight()-imageHeight;
+        //-80 is for the bottom score section, we do not want the ship drawn behind that
+        int furthestDown = GameConfig.getGameHeight()-imageHeight-80;
         if (posY >= furthestDown)
             this.posY = furthestDown;
         else
