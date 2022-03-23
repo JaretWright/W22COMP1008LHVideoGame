@@ -10,6 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.net.URL;
 import java.security.SecureRandom;
@@ -25,6 +28,8 @@ public class GameViewController implements Initializable {
 
     @FXML
     private Button startButton;
+
+    private AnimationTimer timer;
 
     /**
      * Set is a data structure that prevents duplicates, otherwise it is somewhat similar
@@ -63,14 +68,14 @@ public class GameViewController implements Initializable {
         SecureRandom rng = new SecureRandom();
 
         //Add Alien's to the scene
-        for (int i = 1; i<=50 ; i++)
+        for (int i = 1; i<=5 ; i++)
         {
             aliens.add(new Alien(rng.nextInt(600,900),
-                            rng.nextInt(30,GameConfig.getGameHeight()-GameConfig.getAlienHeight())));
+                            rng.nextInt(30,GameConfig.getGameHeight()-80-GameConfig.getAlienHeight())));
         }
 
         //Add a timer to draw and update the Sprites
-        AnimationTimer timer = new AnimationTimer() {
+        timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
                 gc.drawImage(background, 0, 0, GameConfig.getGameWidth(), GameConfig.getGameHeight());
@@ -83,6 +88,7 @@ public class GameViewController implements Initializable {
                 //if the !alien.isAlive() evaluates to true, it removes the Alien from the collection
                 aliens.removeIf(alien -> !alien.isAlive());
 
+                //loop over the aliens, draw them and check for collisions
                 for (Alien alien : aliens)
                 {
                     alien.draw(gc);
@@ -96,12 +102,51 @@ public class GameViewController implements Initializable {
                             alien.setAlive(false);
                         }
                     }
+
+                    if (alien.collidesWith(ship))
+                    {
+                        finalMessage(gc, "The Aliens got you!!", Color.RED);
+                        timer.stop();
+                    }
+                }
+
+                updateStats(gc, aliens);
+
+                if (aliens.size()==0)
+                {
+                    finalMessage(gc, "Congratulations - you saved the universe!", Color.WHITE);
+                    timer.stop();
                 }
             }
         };
         anchorPane.getChildren().add(canvas);
         timer.start();
     }
+
+    private void updateStats(GraphicsContext gc, ArrayList<Alien> aliens)
+    {
+        //draw a black rectangle at the bottom of the screen
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0,GameConfig.getGameHeight()-80, GameConfig.getGameWidth(), 80 );
+
+        //draw how many aliens are remaining
+        Font font = Font.font("Arial", FontWeight.NORMAL, 32);
+        gc.setFont(font);
+        gc.setFill(Color.WHITE);
+        gc.fillText("Aliens remaining: " + aliens.size(), GameConfig.getGameWidth()-300, GameConfig.getGameHeight()-40);
+    }
+
+    /**
+     * This method should be called when the game is over and you want to display information the user
+     */
+    private void finalMessage(GraphicsContext gc, String message, Color color)
+    {
+        Font font = Font.font("Arial", FontWeight.NORMAL, 32);
+        gc.setFont(font);
+        gc.setFill(color);
+        gc.fillText(message, 250, 350);
+    }
+
 
     private void updateShipLocation(Ship ship)
     {
