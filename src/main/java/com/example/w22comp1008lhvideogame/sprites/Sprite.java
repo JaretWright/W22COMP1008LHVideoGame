@@ -9,6 +9,14 @@ public abstract class Sprite {
     protected int posX, posY, imageWidth, imageHeight, speed;
     private boolean alive;
 
+    /**
+     * This is the constructor for the Sprite class
+     * @param posX - left most position of the sprite
+     * @param posY - top most position of the sprite
+     * @param imageWidth - how wide the sprite will be when drawn
+     * @param imageHeight - how tall the sprite will be when drawn
+     * @param speed - the speed at which the sprite will transition positions
+     */
     public Sprite(int posX, int posY, int imageWidth, int imageHeight, int speed) {
         setPosX(posX);
         setPosY(posY);

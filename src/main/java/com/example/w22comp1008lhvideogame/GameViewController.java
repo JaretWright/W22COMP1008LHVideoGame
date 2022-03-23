@@ -1,6 +1,7 @@
 package com.example.w22comp1008lhvideogame;
 
 import com.example.w22comp1008lhvideogame.sprites.Alien;
+import com.example.w22comp1008lhvideogame.sprites.Explosion;
 import com.example.w22comp1008lhvideogame.sprites.Missile;
 import com.example.w22comp1008lhvideogame.sprites.Ship;
 import javafx.animation.AnimationTimer;
@@ -76,6 +77,8 @@ public class GameViewController implements Initializable {
                             rng.nextInt(30,GameConfig.getGameHeight()-80-GameConfig.getAlienHeight())));
         }
 
+        ArrayList<Explosion> explosions = new ArrayList<>();
+
         //Add a timer to draw and update the Sprites
         timer = new AnimationTimer() {
             @Override
@@ -100,6 +103,7 @@ public class GameViewController implements Initializable {
                         if (missile.collidesWith(alien))
                         {
                             //show an explosion
+                            explosions.add(new Explosion(alien.getPosX(), alien.getPosY(), 50, 50));
                             missile.setAlive(false);
                             alien.setAlive(false);
                         }
@@ -112,12 +116,20 @@ public class GameViewController implements Initializable {
                     }
                 }
 
+                //remove any explosions that have completed before attempting to draw them
+                explosions.removeIf(explosion -> !explosion.isAlive());
+
+                //draw the explosions
+                for (Explosion explosion : explosions)
+                    explosion.draw(gc);
+
                 updateStats(gc, aliens);
 
                 if (aliens.size()==0)
                 {
                     finalMessage(gc, "Congratulations - you saved the universe!", Color.WHITE);
-                    timer.stop();
+                    if (explosions.size()==0)
+                        timer.stop();
                 }
             }
         };
